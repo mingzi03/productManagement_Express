@@ -205,3 +205,58 @@ if (uploadImage) {
     });
 }
 // End Upload Image
+
+
+// Sort
+const sort = document.querySelector("[sort]");
+    // console.log(sort);
+
+if (sort) {
+    let url = new URL(window.location.href);
+
+    // Sắp xếp
+    const sortSelect = sort.querySelector("[sort-select]");
+    const sortClear = sort.querySelector("[sort-clear]");
+
+    sortSelect.addEventListener("change", (e) => {
+            // console.log(e);
+            // console.log(e.target.value);
+
+        const valueNew = e.target.value;
+            // console.log(value.split("-"));
+
+        const [sortKey, sortValue] = valueNew.split("-");
+            console.log(sortKey);
+            console.log(sortValue);
+
+        url.searchParams.set("sortKey", sortKey);
+        url.searchParams.set("sortValue", sortValue);
+
+        window.location.href = url.href;
+    });
+
+    // Clear
+    sortClear.addEventListener("click", () => {
+        url.searchParams.delete("sortKey");
+        url.searchParams.delete("sortValue");
+
+        window.location.href = url.href;
+    });
+
+    // Thêm selected cho option
+    const sortKey = url.searchParams.get("sortKey");
+    const sortValue = url.searchParams.get("sortValue");
+        // console.log(sortKey);
+        // console.log(sortValue);
+
+    if (sortKey && sortValue) {
+        const stringSort = `${sortKey}-${sortValue}`;
+        console.log(stringSort);
+
+        const optionSelected = sortSelect.querySelector(`option[value='${stringSort}']`);
+            // console.log(optionSelected);
+
+        optionSelected.selected = true;
+    }
+}
+// End Sort
