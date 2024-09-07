@@ -220,11 +220,20 @@ module.exports.edit = async (req, res) => {
             const find = { deleted: false, _id: req.params.id };
 
             const product = await Product.findOne(find);
-            // console.log(product);
+                // console.log(product);
+            
+                const category = await ProductCategory.find({
+                    deleted: false
+                });
+                        // console.log(category); 
+            
+                const newCategory = createTreeHelper.tree(category);
+                        // console.log(newCategory);   // Bật console của NodeJs trên trình duyệt, mở thuộc tính children
 
             res.render("admin/pages/products/edit", {
                 pageTitle: "Chỉnh sửa sản phẩm",
-                product: product
+                product: product,
+                category: newCategory
             });
         } catch(error) {
             res.redirect(`${systemConfig.prefixAdmin}/products`);

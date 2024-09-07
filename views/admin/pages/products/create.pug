@@ -30,7 +30,7 @@ block main
                 id="product_category_id"
                 class="form-control"
             )
-                option(value="") -- Chọn danh mục cha --
+                option(value="") -- Chọn danh mục --
                 if(category)
                     +select-tree(category)
         div(class="form-group")
