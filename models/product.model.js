@@ -46,6 +46,13 @@ const productSchema = new mongoose.Schema({
             // }
         },
 
+        updatedBy: [
+            {
+            account_id: String,
+            updatedAt: Date,
+        },
+    ],
+
     },
 
     {
