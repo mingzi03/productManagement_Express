@@ -6,6 +6,7 @@ const flash = require("express-flash");
 const cookieParser = require("cookie-parser");
 const session = require("express-session");
 const multer  = require("multer");
+const moment = require("moment");
 require('dotenv').config();
 
 const database = require("./config/database");
@@ -40,6 +41,7 @@ app.use('/tinymce', express.static(path.join(__dirname, "node_modules", "tinymce
 
 // App Locals Variables
 app.locals.prefixAdmin = systemConfig.prefixAdmin;
+app.locals.moment = moment;
 
 // console.log(__dirname);  // Cấu trúc thư mục NodeJs
 app.use(express.static(`${__dirname}/public`));
