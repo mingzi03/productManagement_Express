@@ -1,3 +1,5 @@
+include ../mixins/sub-menu.pug
+
 header.header
   .container
     .row.align-items-center
@@ -11,5 +13,23 @@ header.header
           ul
              li
                 a(href="/") Trang chủ
-             li
-                a(href="/products") Sản phẩm
+
+             li(class="sub-menu")
+              -const pathProduct = "/products"
+              a(href=pathProduct) Sản phẩm
+                +sub-menu(layoutProductsCategory, pathProduct)
+                //- ul 
+                //-   li 
+                //-     a(href="/products/slug-1") Muc1 
+                //-     ul
+                //-       li 
+                //-         a(href="/products/slug-1-1") Muc1-1 
+                //-       li 
+                //-         a(href="/products/slug-1-2") Muc1-2
+                //-         ul 
+                //-           li 
+                //-             a(href="/products/slug-1-2-1") Muc1-2-1
+                //-           li 
+                //-             a(href="/products/slug-1-2-2") Muc1-2-2
+                //-   li 
+                //-     a(href="/products/slug-2") Muc2
