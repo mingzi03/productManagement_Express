@@ -5,6 +5,8 @@ const contoller = require("../../controllers/client/product.controller");
 
 router.get("/", contoller.index);
 
-router.get("/:slug", contoller.detail);
+router.get("/:slugCategory", contoller.category);
+
+//router.get("/:slug", contoller.detail);
 
 module.exports = router;
