@@ -46,19 +46,25 @@ module.exports.create = async (req,res) => {
 module.exports.createPost = async (req, res) => {
         // console.log(req.body);
 
-    if (req.body.position == "") {
-        const count = await ProductCategory.countDocuments();
-                // console.log(count);
-
-        req.body.position = count + 1;
-    } else {
-            req.body.position = parseInt(req.body.position);
+        //console.log(res.locals.role.permissions);
+        const permissions = res.locals.role.permissions;
+        if (permissions.includes("products-category_create")) {
+            if (req.body.position == "") {
+                const count = await ProductCategory.countDocuments();
+                        // console.log(count);
+        
+                req.body.position = count + 1;
+            } else {
+                    req.body.position = parseInt(req.body.position);
+                }
+        
+            const record = new ProductCategory(req.body);
+            await record.save();
+        
+            res.redirect(`${systemConfig.prefixAdmin}/products-category`);
+        } else {
+            return;
         }
-
-    const record = new ProductCategory(req.body);
-    await record.save();
-
-    res.redirect(`${systemConfig.prefixAdmin}/products-category`);
 }
 
 
