@@ -7,6 +7,6 @@ router.get("/", contoller.index);
 
 router.get("/:slugCategory", contoller.category);
 
-//router.get("/:slug", contoller.detail);
+router.get("/detail/:slugProduct", contoller.detail);
 
 module.exports = router;

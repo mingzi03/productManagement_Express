@@ -24,15 +24,31 @@ module.exports.index = async (req, res) => {
 };
 
 
-// [GET] /products/:slug
+// [GET] /products/:slugProduct
 module.exports.detail = async (req, res) => {
         // console.log(req.params.slug);
     
     try {
-        const find = { deleted: false, slug: req.params.slug, status: "active" };
-
+        const find = { 
+            deleted: false,
+            slug: req.params.slugProduct,
+            status: "active"
+        };
+        //console.log("Slug product:", req.params.slugProduct);
         const product = await Product.findOne(find);
-            console.log(product);
+            //console.log(product);
+        
+            if(product.product_category_id) {
+                const category = await ProductCategory.findOne({
+                    _id: product.product_category_id,
+                    status: "active",
+                    deleted: false
+                });
+
+                product.category = category;
+            }
+        
+        product.priceNew = productsHelper.priceProduct(product);
 
         res.render("client/pages/products/detail", {
             pageTitle: product.title,

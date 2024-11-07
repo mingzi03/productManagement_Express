@@ -19,7 +19,7 @@ module.exports.getSubCategory = async (parentId) => {
     
         //console.log(allSub);
         return allSub;
-    };
+    }
 
     const result = await getCategory(parentId);
     return result;
