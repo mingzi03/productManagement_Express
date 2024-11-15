@@ -108,7 +108,7 @@ module.exports.editPatch = async (req,res) => {
     req.body.position = parseInt(req.body.position); // Chuyển position trong req.body từ chuỗi thành số
         // console.log(req.body);
     
-    await ProductCategory.updateOne( { _id: id}, req.body );
+    await ProductCategory.updateOne( { _id: id}, req.body );    
 
     res.redirect("back");
 };
