@@ -7,7 +7,7 @@ module.exports.infoUser = async (req, res, next) => {
         const user = await User.findOne({
             tokenUser: req.cookies.tokenUser,
             deleted: false,
-            status: blocked
+            status: "active"
         }).select("-password");
 
         if (user) {

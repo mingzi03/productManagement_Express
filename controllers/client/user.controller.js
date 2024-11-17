@@ -65,7 +65,7 @@ module.exports.loginPost = async (req,res) => {
         return;
     }
 
-    if (user.status === "locked") {
+    if (user.status === "blocked") {
         req.flash("error", "Tài khoản đã bị khóa!");
         res.redirect("back");
         return;
@@ -75,4 +75,10 @@ module.exports.loginPost = async (req,res) => {
     
     res.redirect("/");
 
+}
+
+// [GET] /user/logout
+module.exports.logout = async (req,res) => {
+    res.clearCookie("tokenUser");
+    res.redirect("/");
 }
